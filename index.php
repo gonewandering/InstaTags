@@ -69,22 +69,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="item-comments">
-                                <div class="row-fluid">
-                                    <div class="span12">
-                                        {{#each comments.data}}
-                                            <div class="row-fluid comment">
-                                                <div class="span2">
-                                                    <img {{bindAttr src="from.profile_picture"}} />
-                                                </div> 
-                                                <div class="span10">
-                                                    <small><strong>{{ from.full_name }}</strong> / {{text}}</small>
+                            {{#if comments.data}}
+                                <div class="item-comments">
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            {{#each comments.data}}
+                                                <div class="row-fluid comment">
+                                                    <div class="span2">
+                                                        <img {{bindAttr src="from.profile_picture"}} />
+                                                    </div> 
+                                                    <div class="span10">
+                                                        <small><strong>{{ from.full_name }}</strong> / {{text}}</small>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        {{/each}}
+                                            {{/each}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {{/if}}
                         </div>
                     {{/each}}
                 {{/if}}
@@ -112,22 +114,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="item-comments">
-                                <div class="row-fluid">
-                                    <div class="span12">
-                                        {{#each comments.data}}
-                                            <div class="row-fluid comment">
-                                                <div class="span2">
-                                                    <img {{bindAttr src="from.profile_picture"}} />
-                                                </div> 
-                                                <div class="span10">
-                                                    <small><strong>{{ from.full_name }}</strong> / {{text}}</small>
+                            {{#if comments.data}}
+                                <div class="item-comments">
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            {{#each comments.data}}
+                                                <div class="row-fluid comment">
+                                                    <div class="span2">
+                                                        <img {{bindAttr src="from.profile_picture"}} />
+                                                    </div> 
+                                                    <div class="span10">
+                                                        <small><strong>{{ from.full_name }}</strong> / {{text}}</small>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        {{/each}}
+                                            {{/each}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {{/if}}
                         </div>
                     {{/each}}
                 {{/if}}
@@ -148,29 +152,33 @@
                                         <strong>{{user.full_name}}</strong>
                                     </div>
                                     <div class="span4 pull-right">
-                                        <span><i class="icon-heart"></i>{{likes.count}}</span>
+                                        <span>
+                                            <i class="icon-heart"></i> {{likes.count}}
+                                        </span>
                                         <span style="margin-left:10px">
-                                            <i class="icon-comment">{{comments.count}}</i>
+                                            <i class="icon-comment"></i> {{comments.count}}
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="item-comments">
-                                <div class="row-fluid">
-                                    <div class="span12">
-                                        {{#each comments.data}}
-                                            <div class="row-fluid comment">
-                                                <div class="span2">
-                                                    <img {{bindAttr src="from.profile_picture"}} />
-                                                </div> 
-                                                <div class="span10">
-                                                    <small><strong>{{ from.full_name }}</strong> / {{text}}</small>
+                            {{#if comments.data}}
+                                <div class="item-comments">
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            {{#each comments.data}}
+                                                <div class="row-fluid comment">
+                                                    <div class="span2">
+                                                        <img {{bindAttr src="from.profile_picture"}} />
+                                                    </div> 
+                                                    <div class="span10">
+                                                        <small><strong>{{ from.full_name }}</strong> / {{text}}</small>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        {{/each}}
+                                            {{/each}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {{/if}}
                         </div>
                     {{/each}}
                 {{/if}}
@@ -191,29 +199,33 @@
                                         <strong>{{user.full_name}}</strong>
                                     </div>
                                     <div class="span4 pull-right">
-                                        <span><i class="icon-heart"></i>{{likes.count}}</span>
+                                        <span>
+                                            <i class="icon-heart"></i> {{likes.count}}
+                                        </span>
                                         <span style="margin-left:10px">
-                                            <i class="icon-comment">{{comments.count}}</i>
+                                            <i class="icon-comment"></i> {{comments.count}}
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="item-comments">
-                                <div class="row-fluid">
-                                    <div class="span12">
-                                        {{#each comments.data}}
-                                            <div class="row-fluid comment">
-                                                <div class="span2">
-                                                    <img {{bindAttr src="from.profile_picture"}} />
-                                                </div> 
-                                                <div class="span10">
-                                                    <small><strong>{{ from.full_name }}</strong> / {{text}}</small>
+                            {{#if comments.data}}
+                                <div class="item-comments">
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            {{#each comments.data}}
+                                                <div class="row-fluid comment">
+                                                    <div class="span2">
+                                                        <img {{bindAttr src="from.profile_picture"}} />
+                                                    </div> 
+                                                    <div class="span10">
+                                                        <small><strong>{{ from.full_name }}</strong> / {{text}}</small>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        {{/each}}
+                                            {{/each}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {{/if}}
                         </div>
                     {{/each}}
                 {{/if}}

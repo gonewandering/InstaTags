@@ -8,6 +8,17 @@ Is = Ember.Application.create({
 
 // Models
 
+Is.Item = Ember.Object.extend({
+    comments: {
+        data:[],
+        count:0
+    },
+    likes: {
+        data:[],
+        count:0
+    }
+});
+
 Is.Search = Ember.Object.extend({
     loadAll: false,
     columns: 5,
