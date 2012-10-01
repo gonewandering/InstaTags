@@ -32,3 +32,12 @@ body {
 .list-item .item-content .span4 { 
     text-align:right;
 }
+.list-item .item-comments {
+    padding:6px 10px;
+    border-top:solid 1px #CCC;
+    background:#EFEFEF;
+}
+.list-item .item-comments .comment {
+    padding:5px 0;
+    line-height:12px;
+}

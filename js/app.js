@@ -14,8 +14,8 @@ Is.Search = Ember.Object.extend({
     url: false,
     rate: 3000,
     items: 0,
-    likes: 0,
-    comments: 0,
+    likes: false,
+    comments: false,
     createUrl: function () { 
         var url = "https://api.instagram.com/v1/tags/"+this.query+"/media/recent?callback=?&client_id="+Is.get("app_id");
         if (this.url == false) { return url; } else { return this.url; }
@@ -41,6 +41,7 @@ Is.Search = Ember.Object.extend({
             var cnt = Math.round(d.data.length.length/me.get("columns"));
             me.set("url", d.pagination.next_url+"&callback=?");
             var n = 1; $.each(d.data, function (k, v) {
+                console.log(v);
                 me.set("items", me.get("items")+1);
                 me.set("likes", me.get("likes")+v.likes.count);
                 me.set("comments", me.get("comments")+v.comments.count);
