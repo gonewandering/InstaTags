@@ -37,7 +37,7 @@
             <i class="icon-heart" style="margin-left:10px"></i> <strong>{{Is.currentSearch.likes}}</strong> 
             <i class="icon-comment" style="margin-left:10px"></i> <strong>{{Is.currentSearch.comments}}</strong>
         </a>
-        <input type="text" placeholder="Search by #Tag" {{action edit on="keyPress"}} />
+        <input type="text" {{ bindAttr placeholder="Is.currentSearch.placeholder" }} {{action edit on="keyPress"}} />
         <a class="btn btn-info" {{action reload}}>More</a>
         <a class="btn btn-info" {{action clear}}>Clear</a>
         <a id ="loadAll" class="btn btn-info" {{action all}}>All</a>

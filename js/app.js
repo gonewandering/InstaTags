@@ -21,6 +21,10 @@ Is.Item = Ember.Object.extend({
 
 Is.Search = Ember.Object.extend({
     loadAll: false,
+    placeholder: function () {
+        if (this.get("query")) { return this.get("query"); }
+        else { return "Search by #Tag"; }
+    }.property(),
     columns: 5,
     url: false,
     rate: 3000,
@@ -43,7 +47,9 @@ Is.Search = Ember.Object.extend({
     col3: Ember.ArrayController.create({ content: [] }),
     col4: Ember.ArrayController.create({ content: [] }),
     col5: Ember.ArrayController.create({ content: [] }),
-    
+    init: function () { 
+        if (this.query) { this.refresh(); }
+    },
     getResults: function getRes(callback) { 
         var me = this;
         this.set("url", this.createUrl());
@@ -91,7 +97,7 @@ Is.searchView = Ember.View.extend({
         if (e.keyCode == 13) { 
             Is.currentSearch.clear();
             Is.currentSearch.set("url", false);
-            Is.currentSearch.set("query", Ember.$(e.currentTarget).val());
+            Is.currentSearch.set("query", Ember.$(e.currentTarget).val().replace("#", ""));
             return false;
         }
     },
@@ -115,4 +121,8 @@ Is.resultsView = Ember.View.extend({
 
 // Controller
 
-Is.currentSearch = Is.Search.create();
+if (window.location.hash) { 
+    Is.currentSearch = Is.Search.create({"query" : window.location.hash.replace("#", "")});
+} else { 
+    Is.currentSearch = Is.Search.create();    
+}
