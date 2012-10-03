@@ -1,3 +1,5 @@
+// Create Application
+
 Is = Ember.Application.create({
     loading: false,
     title: "InstaGrammar",
@@ -8,17 +10,6 @@ Is = Ember.Application.create({
 
 // Models
 
-Is.Item = Ember.Object.extend({
-    comments: {
-        data:[],
-        count:0
-    },
-    likes: {
-        data:[],
-        count:0
-    }
-});
-
 Is.Search = Ember.Object.extend({
     loadAll: false,
     placeholder: function () {
@@ -26,6 +17,8 @@ Is.Search = Ember.Object.extend({
         else { return "Search by #Tag"; }
     }.property(),
     columns: 5,
+    colWidth: function() { return ((100/this.get("columns"))-(this.colPad)*2); }.property(),
+    colPad: .75,
     url: false,
     rate: 3000,
     items: 0,
@@ -38,15 +31,8 @@ Is.Search = Ember.Object.extend({
     query: null,
     count: 0,
     loading:false,
-    results: Ember.ArrayController.create({
-        content: []
-    }),
+    results: Ember.ArrayController.create({ content: [] }),
     
-    col1: Ember.ArrayController.create({ content: [] }),
-    col2: Ember.ArrayController.create({ content: [] }),
-    col3: Ember.ArrayController.create({ content: [] }),
-    col4: Ember.ArrayController.create({ content: [] }),
-    col5: Ember.ArrayController.create({ content: [] }),
     init: function () { 
         if (this.query) { this.refresh(); }
     },
@@ -55,16 +41,24 @@ Is.Search = Ember.Object.extend({
         this.set("url", this.createUrl());
         this.set("loading", true);
         $.getJSON(me.url, function (d) {
-            var cnt = Math.round(d.data.length.length/me.get("columns"));
+            
+            // Set Url Etc.
             me.set("url", d.pagination.next_url+"&callback=?");
-            var n = 1; $.each(d.data, function (k, v) {
-                console.log(v);
+            var n = 0; $.each(d.data, function (k, v) {
+            
+                // General Stats
                 me.set("items", me.get("items")+1);
                 me.set("likes", me.get("likes")+v.likes.count);
                 me.set("comments", me.get("comments")+v.comments.count);
-                me["col"+n].insertAt(0, v); n++;
-                if (n > me.get("columns")) { n = 1; }
+                
+                // Add to Columns
+                while (me.results.content[n] === undefined) { 
+                    me.results.insertAt(0, Ember.ArrayController.create({ content: [] }));
+                }
+                me.results.content[n].insertAt(0, v); n++;
+                if (n >= me.get("columns")) { n = 0; }
             });
+            
             if (me.get("url") && me.get("loadAll") == true) { me.getResults(); }
             me.set("loading", false);
         });
@@ -82,14 +76,11 @@ Is.Search = Ember.Object.extend({
         this.getResults();
     }.observes("query"),
     clear: function () { 
-        var n = 1; while (n <= this.get("columns")) { 
-            this["col"+n].set("content", []);
-            n++;
-        }
+        this.results.set("content", []);
     }
 });
 
-// Views
+// ControllerViews
 
 Is.searchView = Ember.View.extend({
     templateName: "search-view",
@@ -119,7 +110,15 @@ Is.resultsView = Ember.View.extend({
     templateName: "results-view"
 });
 
-// Controller
+Is.columnView = Ember.View.extend({
+    templateName: "column-view"
+});
+
+Is.itemView = Ember.View.extend({
+    templateName: "item-view"
+});
+
+// Init
 
 if (window.location.hash) { 
     Is.currentSearch = Is.Search.create({"query" : window.location.hash.replace("#", "")});
