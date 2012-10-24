@@ -2,7 +2,7 @@
 
 Is = Ember.Application.create({
     loading: false,
-    title: "InstaGrammar",
+    title: "InstaTags",
     subtitle: "An app for getting analytics on Instagram Tags",
     app_id: "035d1b35a32c4faaadfa6304bb866152",
     by: "Lindsay Silver, Clever Girls Collective"
