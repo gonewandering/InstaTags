@@ -121,7 +121,7 @@ Is.itemView = Ember.View.extend({
 // Init
 
 if (window.location.hash) { 
-    Is.currentSearch = Is.Search.create({"query" : window.location.hash.replace("#", "")});
+    Is.currentSearch = Is.Search.create({"query" : window.location.hash.replace(["/#/", "#/", "#"], "")});
 } else { 
     Is.currentSearch = Is.Search.create();    
 }
